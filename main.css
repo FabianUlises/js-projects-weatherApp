@@ -1,0 +1,93 @@
+/* Global reset */
+*::after,
+*::before,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Font family */
+@font-face {
+    font-family: 'Open Sans';
+    src: url(./fonts/OpenSans.woff2) format('woff2'),
+        url(./fonts//OpenSans.woff) format('woff');
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url(./fonts/OpenSans-Light.woff2) format('woff2'),
+        url(./fonts//OpenSans-Light.woff) format('woff');
+        font-weight: 300;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url(./fonts/OpenSans-Semibold.woff2) format('woff2'),
+        url(./fonts//OpenSans-Semibold.woff) format('woff');
+        font-weight: 600;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url(./fonts/OpenSans-Bold.woff2) format('woff2'),
+        url(./fonts//OpenSans-Bold.woff) format('woff');
+        font-weight: 700;
+}
+/* Start of page styles */
+body {
+    width: 100%;
+    height: 100vh;
+    background-image: radial-gradient(circle, #1c7fc2 0%, #009cdc 28%, #0d9ade 32%, #011844 100%);
+    color: white;
+    font-weight: 300;
+    font-size: 22px;
+}
+/* Start of app styles */
+.weather {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+/* Search input */
+.weather__search {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 15px 10px;
+    border: none;
+    font-size: 20px;
+    color: inherit;
+}
+/* Header input placeholder  */
+.weather__search::placeholder {
+    color: white;
+}
+/* Header date info */
+.weather__today {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 0, 0.336);
+}
+/* Header image */
+.weather__img {
+    width: 30vmin;
+    align-self: center;
+}
+/* Header city info */
+.weather__city {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 20px 0;
+}
+/* Header day */
+.weather__day {
+    font-size: 30px;
+    margin: 10px 0;
+    font-weight: 400;
+}
+/* Header current temperature */
+.weather__current {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+/* End of app styles */
+/* End of page styles */

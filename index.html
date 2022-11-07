@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+    <script defer src="app.js"></script>
+    <title>Weather</title>
+</head>
+<body>
+    <!-- Start of page content -->
+    <!-- Start of weather app  -->
+    <div class="weather-app weather">
+        <!-- Weather app input -->
+        <input type="text" class="weather__search" placeholder="Your City">
+        <!-- Start of weather today section -->
+        <div class="weather__today">
+            <!-- Start of weather details -->
+            <div class="weather__details">
+                <!-- Weather details title -->
+                <h2 class="weather__city">City</h2>
+                <p class="weather__day">Day</p>
+                <!-- Start of current weather section -->
+                <div class="weather__current">
+                    <!-- Weather indicator getting text from js-->
+                    <p class="weather__indicator weather__indicator--humidity"><span class="value">50</span>%</p>
+                    <p class="weather__indicator weather__indicator--wind"><span class="value">West, 5</span>m/s</p>
+                    <p class="weather__indicator weather__indicator--pressure"><span class="value">1050</span>hPa</p>
+                </div>
+                <!-- End of current weather section -->
+                <!-- End of weather details -->
+            </div>
+            <!-- End of weather today section -->
+            <!--  -->
+            <!-- Weather image -->
+            <img src="" alt="Clear sky" class="weather__img">
+            <!-- Temperature -->
+            <div class="weather__temperature"><span class="value">+25</span>&deg;C</div>
+        </div>
+        <!-- Start of weather forecast section -->
+        <div class="weather__forecast">
+            <!-- Start of weather forecast item -->
+            <article class="weather__forecast__item">
+                <!-- Forecast image -->
+                <img class="weather__forecast__icon" src="" alt="Clear sky">
+                <!-- Forecast day -->
+                <h3 class="weather__forecast__day">Day</h3>
+                <!-- Forecast temperature -->
+                <p class="weather__forecast__temperature"><span>+25</span>&deg;C</p>
+            </article>
+            <!-- End of weather forecast item -->
+            <!-- Start of weather forecast item -->
+            <article class="weather__forecast__item">
+                <!-- Forecast image -->
+                <img class="weather__forecast__icon" src="" alt="Clear sky">
+                <!-- Forecast day -->
+                <h3 class="weather__forecast__day">Day</h3>
+                <!-- Forecast temperature -->
+                <p class="weather__forecast__temperature"><span>+25</span>&deg;C</p>
+            </article>
+            <!-- End of weather forecast item -->
+            <!-- Start of weather forecast item -->
+            <article class="weather__forecast__item">
+                <!-- Forecast image -->
+                <img class="weather__forecast__icon" src="" alt="Clear sky">
+                <!-- Forecast day -->
+                <h3 class="weather__forecast__day">Day</h3>
+                <!-- Forecast temperature -->
+                <p class="weather__forecast__temperature"><span>+25</span>&deg;C</p>
+            </article>
+            <!-- End of weather forecast item -->
+            <!-- Start of weather forecast item -->
+            <article class="weather__forecast__item">
+                <!-- Forecast image -->
+                <img class="weather__forecast__icon" src="" alt="Clear sky">
+                <!-- Forecast day -->
+                <h3 class="weather__forecast__day">Day</h3>
+                <!-- Forecast temperature -->
+                <p class="weather__forecast__temperature"><span>+25</span>&deg;C</p>
+            </article>
+            <!-- End of weather forecast item -->
+        </div>
+        <!-- End of weather forecast section -->
+    </div>
+    <!-- End of weather app  -->
+    <!-- End of page content -->
+</body>
+</html>

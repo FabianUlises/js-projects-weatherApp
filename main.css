@@ -38,6 +38,7 @@ body {
     color: white;
     font-weight: 300;
     font-size: 22px;
+    font-family: sans-serif;
 }
 /* Start of app styles */
 .weather {

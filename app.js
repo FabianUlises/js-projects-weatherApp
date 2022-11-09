@@ -5,12 +5,53 @@ const day = document.querySelector('.weather__day');
 const humidity = document.querySelector('.weather__indicator--humidity');
 const wind = document.querySelector('.weather__indicator--wind>.value');
 const pressure = document.querySelector('.weather__indicator--pressure>.value');
-const image = document.querySelector('.weather__image');
+const image = document.querySelector('.weather__img');
 const temperature = document.querySelector('.weather__temperature>.value');
 const weatherAPIKey = '6f0ddb9b2341d8c05fa0f41837915cc1';
 const weatherBaseEndpoint = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${weatherAPIKey}`;
 const forecastBaseEndpoint = `https://api.openweathermap.org/data/2.5/forecast?units=metric&appid=${weatherAPIKey}`;
 const foreCastBlock = document.querySelector('.weather__forecast');
+// Array for weather images
+let weatherImages = [
+    {
+        url: 'images/clear-sky.png',
+        ids: [800]
+    },
+    {
+        url: 'images/broken-clouds.png',
+        ids: [803, 804]
+    },
+    {
+        url: 'images/few-clouds.png',
+        ids: [801]
+    },
+    {
+        url: 'images/mist.png',
+        ids: [701, 711, 721, 731, 741, 751, 761, 762, 771, 781]
+    },
+    {
+        url: 'images/rain.png',
+        ids: [500, 501, 502, 503, 504]
+    },
+    {
+        url: 'images/scattered-clouds.png',
+        ids: [802]
+    },
+    {
+        url: 'images/shower-rain.png',
+        ids: [520, 521, 522, 531, 300, 301, 302, 310, 311, 312, 313, 314, 321]
+    },
+    {
+        url: 'images/snow.png',
+        ids: [511, 600, 601, 602, 611, 612, 613, 615, 616, 620, 621, 622]
+    },
+    {
+        url: 'images/thnderstorm.png',
+        ids: [200, 201, 202, 210, 211, 212, 221, 230, 231, 232]
+    }
+]
+
+// Function to get day of the week
 const dayOfWeek = () => {
     return new Date().toLocaleDateString('en-EN', {'weekday': 'long'});
 };
@@ -21,11 +62,13 @@ const getWeatherByCityName = async (city) => {
     const weather = await response.json();
     return weather;
 };
+// Functin to Getting city forecast 
 let getForecastByCityId = async (id) => {
     let endpoint = `${forecastBaseEndpoint}&id=${id}`;
     let result = await fetch(endpoint);
     let forecast = await result.json();
     let forecastList = forecast.list;
+    // Adding forecast to array
     let daily = [];
     forecastList.forEach(day => {
         let date = new Date(day.dt_txt.replace(' ', 'T'));;
@@ -37,8 +80,10 @@ let getForecastByCityId = async (id) => {
     return daily;
 
 };
+// Function to update forecast ondom
 const updateForecast = (forecast) => {
     foreCastBlock.innerHTML = '';
+    // Inserting html to dom
     forecast.forEach(day => {
         let iconUrl = `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
         let dayName = dayOfWeek(day.dt * 1000);
@@ -63,7 +108,6 @@ const updateCurrentWeather = (data) => {
     day.textContent = dayOfWeek();
     humidity.textContent = data.main.humidity;
     pressure.textContent = data.main.pressure;
-    temperature.textContent = data.main.temp > 0 ? + Math.round(data.main.temp) : Math.round(data.main.temp);
     let windDirection;
     let deg = data.wind.deg;
     if(deg > 45 && deg <=135) {
@@ -76,6 +120,15 @@ const updateCurrentWeather = (data) => {
         windDirection = 'North';
     }
     wind.textContent = `${windDirection}, ${data.wind.speed}`;
+    temperature.textContent = data.main.temp > 0 ? + Math.round(data.main.temp) : Math.round(data.main.temp);
+    let imgID = data.weather[0].id;
+    // Updating header weather img on dom
+    weatherImages.forEach(img => {
+        console.log(image.src)
+        if(img.ids.includes(imgID)) {
+            image.src = img.url;
+        }
+    })
 
 };
 // Eventlistener to search to city

@@ -52,20 +52,45 @@ let weatherImages = [
         ids: [200, 201, 202, 210, 211, 212, 221, 230, 231, 232]
     }
 ]
-
+// Function to search by city
+const weatherForCity =  async(city) => {
+    let weather = await getWeatherByCityName(city);
+    if(!weather) {
+        return;
+    }
+    let cityId = weather.id;
+    updateCurrentWeather(weather);
+    let forecast = await getForecastByCityId(cityId);
+    updateForecast(forecast);
+    // console.log(foreCastBlock, forecast)
+}
+// Functino to load default city on page
+const init = () => {
+    weatherForCity('mexico city').then(() => document.body.style.filter = 'blur(0)');
+}
 // Function to get day of the week
 const dayOfWeek = () => {
     return new Date().toLocaleDateString('en-EN', {'weekday': 'long'});
 };
 // Function to get searched data back
-const getWeatherByCityName = async (city) => {
+const getWeatherByCityName = async (cityString) => {
+    let city;
+    if(cityString.includes(',')) {
+        city = cityString.substring(0, cityString.indexOf(',')) + cityString.substring(cityString.lastIndexOf(','));
+    } else {
+        city = cityString;
+    }
     let endpoint = `${weatherBaseEndpoint}&q=${city}`;
     let response = await fetch(endpoint);
+    if(response.status !== 200) {
+        alert('City not found!');
+        return;
+    }
     const weather = await response.json();
     return weather;
 };
 // Functin to Getting city forecast 
-let getForecastByCityId = async (id) => {
+const getForecastByCityId = async (id) => {
     let endpoint = `${forecastBaseEndpoint}&id=${id}`;
     let result = await fetch(endpoint);
     let forecast = await result.json();
@@ -136,12 +161,7 @@ const updateCurrentWeather = (data) => {
 // Eventlistener to search to city
 searchInput.addEventListener('keydown', async (e) => {
     if(e.keyCode === 13) {
-        let weather = await getWeatherByCityName(searchInput.value);
-        let cityId = weather.id;
-        updateCurrentWeather(weather);
-        let forecast = await getForecastByCityId(cityId);
-        updateForecast(forecast);
-        // console.log(foreCastBlock, forecast)
+        weatherForCity(searchInput.value);
     }
 });
 // Autofill search with valid city
@@ -158,3 +178,4 @@ searchInput.addEventListener('input', async() => {
     }
     console.log(result);
 });
+init();

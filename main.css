@@ -39,6 +39,8 @@ body {
     font-weight: 300;
     font-size: 22px;
     font-family: sans-serif;
+    filter: blur(15px);
+    transition: filter 100ms ease-in-out;
 }
 /* Start of app styles */
 .weather {

@@ -11,6 +11,8 @@ const weatherAPIKey = '6f0ddb9b2341d8c05fa0f41837915cc1';
 const weatherBaseEndpoint = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${weatherAPIKey}`;
 const forecastBaseEndpoint = `https://api.openweathermap.org/data/2.5/forecast?units=metric&appid=${weatherAPIKey}`;
 const foreCastBlock = document.querySelector('.weather__forecast');
+const cityBase =  'https://api.teleport.org/api/cities/?search=';
+const citySuggestionsCtn = document.querySelector('#citysuggestions');
 // Array for weather images
 let weatherImages = [
     {
@@ -141,4 +143,18 @@ searchInput.addEventListener('keydown', async (e) => {
         updateForecast(forecast);
         // console.log(foreCastBlock, forecast)
     }
+});
+// Autofill search with valid city
+searchInput.addEventListener('input', async() => {
+    let endPoint = cityBase + searchInput.value;
+    let result = await (await fetch(endPoint)).json();
+    citySuggestionsCtn.innerHTML = '';
+    let cities = result._embedded['city:search-results'];
+    let length = cities.length > 5 ? 5 : cities.length;
+    for(let i = 0; i < length; i++) {
+        let option = document.createElement('option')
+        option.value = cities[i].matching_full_name;
+        citySuggestionsCtn.appendChild(option);
+    }
+    console.log(result);
 });

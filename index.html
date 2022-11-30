@@ -11,7 +11,9 @@
     <!-- Start of weather app  -->
     <div class="weather-app weather">
         <!-- Weather app input -->
-        <input type="text" class="weather__search" placeholder="Your City">
+        <input type="text" class="weather__search" placeholder="Your City" list="citysuggestions">
+        <datalist id="citysuggestions">
+        </datalist>
         <!-- Start of weather today section -->
         <div class="weather__today">
             <!-- Start of weather details -->
@@ -47,6 +49,8 @@
                 <!-- Forecast temperature -->
                 <p class="weather__forecast__temperature"><span>+25</span>&deg;C</p>
             </article>
+
+            
             <!-- End of weather forecast item -->
             <!-- Start of weather forecast item -->
             <article class="weather__forecast__item">
